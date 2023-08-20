@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- dependent bean config -->
+
+	<bean id="my_atm" class="dependent.ATMImpl" init-method="myInit"
+		destroy-method="myDestroy" autowire="byType">
+	</bean>
+
+
+	<!-- dependency bean config for informing bank -->
+
+	<!-- <bean id="myTransport" class="dependency.TestTransport"
+		scope="prototype" /> -->
+
+	<bean id="http" class="dependency.HttpTransport" lazy-init="true" />
+
+	<!-- <bean id="soap" class="dependency.SoapTransport" /> -->
+
+	<!-- dependency bean config for informing customer -->
+
+	<bean id="email" class="dependency.EmailNotification" />
+
+	<bean id="notification" class="dependency.SmsNotification" />
+
+
+</beans>
